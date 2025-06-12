@@ -2,7 +2,6 @@
 
 namespace App\Http\DTO;
 
-use App\Enums\UserStatus;
 use Illuminate\Support\Facades\Hash;
 
 readonly class CreateUserDTO

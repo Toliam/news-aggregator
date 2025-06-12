@@ -112,4 +112,9 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    'confirm_code_ttl' => env('CONFIRM_CODE_TTL_MINUTES', 10),
+
+    // database digits and request validation 6 digits
+    'confirm_code_length' => env('CONFIRM_CODE_LENGTH', 6),
+
 ];

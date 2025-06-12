@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryInterface;
+use App\Services\ConfirmationCodeService;
 use App\Services\TelegramBotService;
 use App\Services\UserService;
 use App\Services\UserServiceInterface;
@@ -23,8 +24,16 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(TelegramBotService::class, function (Application $app) {
-            $cfg = config('telegram');
-            return new TelegramBotService($cfg['bot_token'], $cfg['chat_id'], $cfg['api_url'], $cfg['timeout']);
+            return new TelegramBotService(
+                config('telegram.bot_token'),
+                config('telegram.chat_id'),
+                config('telegram.api_url'),
+                config('telegram.timeout')
+            );
+        });
+
+        $this->app->singleton(ConfirmationCodeService::class, function (Application $app) {
+            return new ConfirmationCodeService(config('auth.confirm_code_ttl'), config('auth.confirm_code_length'));
         });
     }
 

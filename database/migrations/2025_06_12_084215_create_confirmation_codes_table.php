@@ -16,10 +16,12 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->char('code', 6);
             $table->timestamp('expires_at');
-            // $table->timestamp('used_at')->nullable();
+            $table->timestamp('used_at')->nullable();
             $table->timestamps();
 
-            // $table->index(['user_id', 'code']);
+            $table->unique(['user_id', 'code']);
+
+            $table->index(['user_id', 'code', 'used_at', 'expires_at']);
         });
     }
 

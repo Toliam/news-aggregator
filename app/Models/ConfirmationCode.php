@@ -19,15 +19,8 @@ class ConfirmationCode extends Model
         'used_at'    => 'datetime',
     ];
 
-    // public function user(): BelongsTo
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-
-    /* Scope для живых/неиспользованных кодов */
-    // public function scopeValid($query)
-    // {
-    //     return $query->whereNull('used_at')
-    //         ->where('expires_at', '>', now());
-    // }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

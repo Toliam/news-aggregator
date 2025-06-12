@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('status', array_column(UserStatus::cases(), 'value'));
+            $table->unsignedTinyInteger('status');
                 // ->index();
             $table->timestamp('last_login_at')->nullable();
             $table->rememberToken();

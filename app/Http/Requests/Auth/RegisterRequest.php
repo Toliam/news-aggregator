@@ -16,7 +16,6 @@ class RegisterRequest extends FormRequest
             'email'    => ['required', 'string', 'email', 'max:191', 'unique:users,email'],
             'password' => [
                 'required',
-                'confirmed',
                 Password::min(12)->letters()->numbers()->mixedCase()->symbols(),
             ],
         ];
